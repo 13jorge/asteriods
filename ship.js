@@ -1,13 +1,7 @@
-// let ship;
-let asteroids = [];
-
-
+let ship;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   ship = new Ship();
-  for(let i = 0; i<5; i++){
-  asteroids.push(new Asteroid());
-}
 }
 
 function draw() {
@@ -16,11 +10,6 @@ function draw() {
   ship.turn();
   ship.update();
   ship.edges();
-
-  for(let i=0; i < asteroids.length; i++){
-    asteroids[i].render();
-    asteroids[i].update();
-  }
 }
 
 function keyReleased(){
@@ -68,11 +57,13 @@ function Ship(){
 
 
   this.render = function(){
+    push();
     translate(this.pos.x, this.pos.y);
     rotate(this.heading + PI / 2);
     noFill();
     stroke(255);
     triangle(-this.r, this.r, this.r,this.r, 0, -this.r);
+    pop();
   }
 
   this.edges = function(){
