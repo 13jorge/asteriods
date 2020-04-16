@@ -31,7 +31,7 @@ function pickLocation(){
 
 
 function draw() {
-  image(img,0,0);
+  image(img,0,0)
   // background('#86DAFF');
 
   if (ship.eat(food)){
