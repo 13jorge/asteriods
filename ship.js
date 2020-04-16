@@ -15,8 +15,8 @@ this.total = 0;
 
 
 this.eat = function(pos) {
-  let d = dist(this.x, this.y, pos.x, pos.y);
-  if (d < 1) {
+  let d = dist(this.pos.x, this.pos.y, pos.x, pos.y);
+  if (d < this.r + 10) {
     this.total++;
     return true;
   } else {
@@ -84,3 +84,14 @@ this.eat = function(pos) {
   }
 
 }
+
+// this.eat = function(pos) {
+//   let d = dist(this.pos.x, this.pos.y, pos.x, pos.y);
+//   if (d < this.r + 10) {
+//     this.total++;
+//     console.log('collide');
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
