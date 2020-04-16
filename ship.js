@@ -5,6 +5,25 @@ function Ship() {
   this.rotation = 0;
   this.vel = createVector(0, 0);
   this.isBoosting = false;
+  this.x = 0;
+this.y = 0;
+this.xspeed = 1;
+this.yspeed = 0;
+this.total = 0;
+
+
+
+
+this.eat = function(pos) {
+  let d = dist(this.x, this.y, pos.x, pos.y);
+  if (d < 1) {
+    this.total++;
+    return true;
+  } else {
+    return false;
+  }
+}
+
 
   this.boosting = function(b) {
     this.isBoosting = b;
@@ -38,7 +57,7 @@ function Ship() {
     translate(this.pos.x, this.pos.y);
     rotate(this.heading + PI / 2);
     fill(0);
-    stroke(255);
+    stroke('#ff0000');
     triangle(-this.r, this.r, this.r, this.r, 0, -this.r);
     pop();
   }

@@ -1,17 +1,43 @@
 var ship;
 var asteroids = [];
 var lasers = [];
+let scl=20;
+let food;
+let img
+
+function preload(){
+  img = loadImage('images/clouds.jpg')
+}
+
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1000,700);
   ship = new Ship();
   for (var i = 0; i < 5; i++) {
     asteroids.push(new Asteroid());
   }
+pickLocation();
+
 }
 
+
+
+function pickLocation(){
+  let cols = floor(width/scl);
+  let rows = floor(height/scl);
+  food = createVector(floor(random(cols)), floor(random(rows)));
+  food.mult(scl);
+}
+
+
 function draw() {
-  background(0);
+  image(img,0,0);
+  // background('#86DAFF');
+
+  if (ship.eat(food)){
+   pickLocation();
+}
+
 
   for (var i = 0; i < asteroids.length; i++) {
     if (ship.hits(asteroids[i])) {
@@ -45,12 +71,19 @@ function draw() {
   //console.log(lasers.length);
 
   ship.render();
+
+
   ship.turn();
   ship.update();
   ship.edges();
 
 
+fill(255,0,100);
+ellipse(food.x, food.y, scl, scl);
 }
+
+
+
 
 function keyReleased() {
   ship.setRotation(0);

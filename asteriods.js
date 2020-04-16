@@ -23,8 +23,9 @@ function Asteroid(pos, r) {
 
   this.render = function() {
     push();
-    stroke(255);
-    noFill();
+    noStroke();
+    // strokeWeight(5);
+    fill(100);
     translate(this.pos.x, this.pos.y);
     //ellipse(0, 0, this.r * 2);
     beginShape();
